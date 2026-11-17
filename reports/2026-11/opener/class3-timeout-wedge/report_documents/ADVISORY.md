@@ -144,7 +144,7 @@ During the wedge: process state `R`, UDP ListIdentity times out, only a containe
 | session cleanup | **`pool[0]`: no write at all — skipped** | traversal stopped on the zeroed node |
 | ~13 s later | wedge (stack above) | timeout handler reads `slot[0] == -1` |
 
-For comparison: this wedge was first observed on an older v2.3-era build — the call chain is identical, only the line numbers differ (encap.c:816, generic_networkhandler.c:262-274, socket_timer.c:45) and the connection-timeout period was longer there (~50–60 s). The faulty code is unchanged on master.
+For comparison: this wedge was first observed on an older v2.3-era build — the call chain is identical, only the line numbers differ (encap.c:816, generic_networkhandler.c:262-274, socket_timer.c:45); on that build the wedge took longer to manifest. The faulty code is unchanged on master.
 
 ### Related, but not a duplicate
 - **#562 / CVE-2026-51535** (resource exhaustion via blocking recv; recovers when the peer disconnects) is a different mechanism and recoverable.
